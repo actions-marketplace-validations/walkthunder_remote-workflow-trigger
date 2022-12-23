@@ -1,4 +1,27 @@
-# Workflow Webhook Action
+# Note: This repo is just support parameters below:
+* webhook_url - https://api.github.com/repos/<author>/<repo_name>/dispatches
+* webhook_sec - PAT of remote repo
+* data - JSON.stringified, note the request Accept type
+* verbose - boolean
+
+Main action is like:
+```
+TOKEN="Bearer $webhook_secret"
+
+if [ "$verbose" = true ]; then
+    echo $TOKEN
+fi
+
+curl
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: $TOKEN"\
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  $webhook_url \
+  -d $data
+```
+
+# From -- [Workflow Webhook Action] -- The original version
 
 [![GitHub Release][ico-release]][link-github-release]
 [![License][ico-license]](LICENSE)
